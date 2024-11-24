@@ -1,3 +1,4 @@
+// DoaAdapter.kt
 package com.example.author
 
 import android.view.LayoutInflater
@@ -5,8 +6,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.author.databinding.ItemDoaBinding
 import com.example.author.model.Doa
+import com.example.author.model.FavoriteDoa
 
-class DoaAdapter(private val doaList: List<Doa>) : RecyclerView.Adapter<DoaAdapter.DoaViewHolder>() {
+class DoaAdapter(private val doaList: List<Doa>, private val onFavoriteClick: (FavoriteDoa) -> Unit) : RecyclerView.Adapter<DoaAdapter.DoaViewHolder>() {
 
     class DoaViewHolder(val binding: ItemDoaBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -19,6 +21,17 @@ class DoaAdapter(private val doaList: List<Doa>) : RecyclerView.Adapter<DoaAdapt
         val doa = doaList[position]
         holder.binding.doaTextView.text = doa.doa
         // Set other views if necessary
+
+        holder.binding.btnAddToFavorite.setOnClickListener {
+            val favoriteDoa = FavoriteDoa(
+                id = doa.id,
+                doa = doa.doa,
+                ayat = doa.ayat,
+                latin = doa.latin,
+                artinya = doa.artinya
+            )
+            onFavoriteClick(favoriteDoa)
+        }
     }
 
     override fun getItemCount(): Int {
