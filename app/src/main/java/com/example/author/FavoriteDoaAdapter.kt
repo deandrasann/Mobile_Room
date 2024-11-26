@@ -19,8 +19,9 @@ class FavoriteDoaAdapter(private val favoriteDoaList: List<FavoriteDoa>) : Recyc
 
     override fun onBindViewHolder(holder: FavoriteDoaViewHolder, position: Int) {
         val favoriteDoa = favoriteDoaList[position]
-        holder.binding.doaFavorit.text = favoriteDoa.doa
-        // Set other views if necessary
+        holder.binding.namaFavorit.text = favoriteDoa.doa
+        holder.binding.artiFavorit.text = favoriteDoa.artinya
+        holder.binding.latinFavorit.text = favoriteDoa.latin
     }
 
     override fun getItemCount(): Int {
